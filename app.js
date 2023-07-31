@@ -8,13 +8,10 @@ async function pullCountry() {
 
         const data = await response.json();
 
-        let first_country = data[0].country;
-        let first_capital = data[0].capital_city;
-
-        let capitals = [first_capital, data[1].capital_city, data[2].capital_city, data[3].capital_city];
+        let capitals = [data[0].capital_city, data[1].capital_city, data[2].capital_city, data[3].capital_city];
 
         let country_capital_map = {
-            [first_country]: first_capital
+            [data[0].country]: data[0].capital_city
         };
 
         for(let i = capitals.length - 1; i > 0; i--){
@@ -24,17 +21,24 @@ async function pullCountry() {
             capitals[j] = temp
         }
 
-        console.log("First Country: ", first_country);
+        console.log("First Country: ", data[0].country);
         console.log("Shuffled Capitals: ", capitals);
         console.log("Country Capital Map: ", country_capital_map);
+
+        // Update the DOM
+        document.getElementById('question').innerText = `What is the capital of ${data[0].country}?`;
+
+        for(let i = 0; i < 4; i++) {
+            document.getElementById(`box${i+1}`).innerText = capitals[i];
+        }
 
     } catch (error) {
         console.error('Failed to fetch the data', error);
     }
 }
 
-pullCountry();
+pullCountry()
 
- module.exports = {
+module.exports = {
     pullCountry
 }
