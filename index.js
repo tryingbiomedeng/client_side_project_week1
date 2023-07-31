@@ -1,4 +1,4 @@
-const { getCountry } = require('./app.js')
+const { pullCountry } = require('./app.js')
 
 // Event listener on buttons for actions here
 
