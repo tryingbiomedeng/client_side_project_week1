@@ -5,16 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Guess the Capital</title>
     <script defer src="./bundle.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
 </head>
 <body>
-    <h1>Welcome to Guess the Capital!</h1>
-    <h2 id="question"></h2>
+    <div class="container text-center">
+        <h1>Welcome to Guess the Capital!</h1>
+        <h2 id="question"></h2>
+        <img src="worldmap.png" alt="World map" class="map-image">
+    </div>
+    <div class="container text-center">
     <div id="options">
-        <div id="box1" class="capital-box"></div>
-        <div id="box2" class="capital-box"></div>
-        <div id="box3" class="capital-box"></div>
-        <div id="box4" class="capital-box"></div>
+        <button type="button" class="btn btn-success">
+            <div id="box1" class="capital-box"></div>
+        </button>
+        <button type="button" class="btn btn-danger">
+            <div id="box2" class="capital-box"></div>
+        </button>
+        <button type="button" class="btn btn-primary">
+            <div id="box3" class="capital-box"></div>
+        </button>
+        <button type="button" class="btn btn-warning">
+            <div id="box4" class="capital-box"></div>
+        </button>
+    </div>
     </div>
 </body>
 </html>
