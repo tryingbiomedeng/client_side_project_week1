@@ -1,46 +1,51 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
-// Attach elements here
+async function pullCountry() {
+    try {
+        const response = await fetch('https://guess-the-capital-aswj.onrender.com/countries/random');
 
-
-const getCountry = () => {
-    fetch("https://yoururl.com") // Replace with server json URL
-        .then(resp => resp.json())
-        .then(pullCountry)
-        .catch(error => console.log(error));
-}
-
-const pullCountry = (data) => {
-    const randomCountry = data[Math.floor(Math.random()*data.length)];
-
-    const countryName = randomCountry.country; // Replace with tag used for country name in json
-    const capitalCity = randomCountry.capital_city; // Replace with tag used for capital city name in json
-
-    const allCities = data.map(country => country.capital_city); // Replace with tag used for capital city name in json
-    const randomCities = [];
-
-    while(randomCities.length < 3) {
-        const randomCity = allCities[Math.floor(Math.random()*allCities.length)];
-        if(randomCity !== capitalCity && !randomCities.includes(randomCity)) {
-            randomCities.push(randomCity);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
+
+        const data = await response.json();
+
+        let first_country = data[0].country;
+        let first_capital = data[0].capital_city;
+
+        let capitals = [first_capital, data[1].capital_city, data[2].capital_city, data[3].capital_city];
+
+        let country_capital_map = {
+            [first_country]: first_capital
+        };
+
+        for(let i = capitals.length - 1; i > 0; i--){
+            const j = Math.floor(Math.random() * i)
+            const temp = capitals[i]
+            capitals[i] = capitals[j]
+            capitals[j] = temp
+        }
+
+        console.log("First Country: ", first_country);
+        console.log("Shuffled Capitals: ", capitals);
+        console.log("Country Capital Map: ", country_capital_map);
+
+    } catch (error) {
+        console.error('Failed to fetch the data', error);
     }
-
-    console.log(countryName, capitalCity, ...randomCities);
 }
- // Need to change final product so that the 'countryName' is allocared to the question
- // And the capital city and three rnaodm capital cities are added to four identical button squares
 
+pullCountry();
 
  module.exports = {
-    getCountry
+    pullCountry
 }
 
 },{}],2:[function(require,module,exports){
-const { getCountry } = require('./app.js')
+const { pullCountry } = require('./app.js')
 
 // Event listener on buttons for actions here
 
 // Remember to convert to bundle when finished
 
 },{"./app.js":1}]},{},[2])
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vZGVfbW9kdWxlcy9icm93c2VyLXBhY2svX3ByZWx1ZGUuanMiLCJhcHAuanMiLCJpbmRleC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQ0FBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTs7QUNuQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBIiwiZmlsZSI6ImdlbmVyYXRlZC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzQ29udGVudCI6WyIoZnVuY3Rpb24oKXtmdW5jdGlvbiByKGUsbix0KXtmdW5jdGlvbiBvKGksZil7aWYoIW5baV0pe2lmKCFlW2ldKXt2YXIgYz1cImZ1bmN0aW9uXCI9PXR5cGVvZiByZXF1aXJlJiZyZXF1aXJlO2lmKCFmJiZjKXJldHVybiBjKGksITApO2lmKHUpcmV0dXJuIHUoaSwhMCk7dmFyIGE9bmV3IEVycm9yKFwiQ2Fubm90IGZpbmQgbW9kdWxlICdcIitpK1wiJ1wiKTt0aHJvdyBhLmNvZGU9XCJNT0RVTEVfTk9UX0ZPVU5EXCIsYX12YXIgcD1uW2ldPXtleHBvcnRzOnt9fTtlW2ldWzBdLmNhbGwocC5leHBvcnRzLGZ1bmN0aW9uKHIpe3ZhciBuPWVbaV1bMV1bcl07cmV0dXJuIG8obnx8cil9LHAscC5leHBvcnRzLHIsZSxuLHQpfXJldHVybiBuW2ldLmV4cG9ydHN9Zm9yKHZhciB1PVwiZnVuY3Rpb25cIj09dHlwZW9mIHJlcXVpcmUmJnJlcXVpcmUsaT0wO2k8dC5sZW5ndGg7aSsrKW8odFtpXSk7cmV0dXJuIG99cmV0dXJuIHJ9KSgpIiwiLy8gQXR0YWNoIGVsZW1lbnRzIGhlcmVcclxuXHJcblxyXG5jb25zdCBnZXRDb3VudHJ5ID0gKCkgPT4ge1xyXG4gICAgZmV0Y2goXCJodHRwczovL3lvdXJ1cmwuY29tXCIpIC8vIFJlcGxhY2Ugd2l0aCBzZXJ2ZXIganNvbiBVUkxcclxuICAgICAgICAudGhlbihyZXNwID0+IHJlc3AuanNvbigpKVxyXG4gICAgICAgIC50aGVuKHB1bGxDb3VudHJ5KVxyXG4gICAgICAgIC5jYXRjaChlcnJvciA9PiBjb25zb2xlLmxvZyhlcnJvcikpO1xyXG59XHJcblxyXG5jb25zdCBwdWxsQ291bnRyeSA9IChkYXRhKSA9PiB7XHJcbiAgICBjb25zdCByYW5kb21Db3VudHJ5ID0gZGF0YVtNYXRoLmZsb29yKE1hdGgucmFuZG9tKCkqZGF0YS5sZW5ndGgpXTtcclxuXHJcbiAgICBjb25zdCBjb3VudHJ5TmFtZSA9IHJhbmRvbUNvdW50cnkuY291bnRyeTsgLy8gUmVwbGFjZSB3aXRoIHRhZyB1c2VkIGZvciBjb3VudHJ5IG5hbWUgaW4ganNvblxyXG4gICAgY29uc3QgY2FwaXRhbENpdHkgPSByYW5kb21Db3VudHJ5LmNhcGl0YWxfY2l0eTsgLy8gUmVwbGFjZSB3aXRoIHRhZyB1c2VkIGZvciBjYXBpdGFsIGNpdHkgbmFtZSBpbiBqc29uXHJcblxyXG4gICAgY29uc3QgYWxsQ2l0aWVzID0gZGF0YS5tYXAoY291bnRyeSA9PiBjb3VudHJ5LmNhcGl0YWxfY2l0eSk7IC8vIFJlcGxhY2Ugd2l0aCB0YWcgdXNlZCBmb3IgY2FwaXRhbCBjaXR5IG5hbWUgaW4ganNvblxyXG4gICAgY29uc3QgcmFuZG9tQ2l0aWVzID0gW107XHJcblxyXG4gICAgd2hpbGUocmFuZG9tQ2l0aWVzLmxlbmd0aCA8IDMpIHtcclxuICAgICAgICBjb25zdCByYW5kb21DaXR5ID0gYWxsQ2l0aWVzW01hdGguZmxvb3IoTWF0aC5yYW5kb20oKSphbGxDaXRpZXMubGVuZ3RoKV07XHJcbiAgICAgICAgaWYocmFuZG9tQ2l0eSAhPT0gY2FwaXRhbENpdHkgJiYgIXJhbmRvbUNpdGllcy5pbmNsdWRlcyhyYW5kb21DaXR5KSkge1xyXG4gICAgICAgICAgICByYW5kb21DaXRpZXMucHVzaChyYW5kb21DaXR5KTtcclxuICAgICAgICB9XHJcbiAgICB9XHJcblxyXG4gICAgY29uc29sZS5sb2coY291bnRyeU5hbWUsIGNhcGl0YWxDaXR5LCAuLi5yYW5kb21DaXRpZXMpO1xyXG59XHJcbiAvLyBOZWVkIHRvIGNoYW5nZSBmaW5hbCBwcm9kdWN0IHNvIHRoYXQgdGhlICdjb3VudHJ5TmFtZScgaXMgYWxsb2NhcmVkIHRvIHRoZSBxdWVzdGlvblxyXG4gLy8gQW5kIHRoZSBjYXBpdGFsIGNpdHkgYW5kIHRocmVlIHJuYW9kbSBjYXBpdGFsIGNpdGllcyBhcmUgYWRkZWQgdG8gZm91ciBpZGVudGljYWwgYnV0dG9uIHNxdWFyZXNcclxuXHJcblxyXG4gbW9kdWxlLmV4cG9ydHMgPSB7XHJcbiAgICBnZXRDb3VudHJ5XHJcbn1cclxuIiwiY29uc3QgeyBnZXRDb3VudHJ5IH0gPSByZXF1aXJlKCcuL2FwcC5qcycpXHJcblxyXG4vLyBFdmVudCBsaXN0ZW5lciBvbiBidXR0b25zIGZvciBhY3Rpb25zIGhlcmVcclxuXHJcbi8vIFJlbWVtYmVyIHRvIGNvbnZlcnQgdG8gYnVuZGxlIHdoZW4gZmluaXNoZWRcclxuIl19
+//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm5vZGVfbW9kdWxlcy9icm93c2VyLXBhY2svX3ByZWx1ZGUuanMiLCJhcHAuanMiLCJpbmRleC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtBQ0FBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7O0FDeENBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsImZpbGUiOiJnZW5lcmF0ZWQuanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlc0NvbnRlbnQiOlsiKGZ1bmN0aW9uKCl7ZnVuY3Rpb24gcihlLG4sdCl7ZnVuY3Rpb24gbyhpLGYpe2lmKCFuW2ldKXtpZighZVtpXSl7dmFyIGM9XCJmdW5jdGlvblwiPT10eXBlb2YgcmVxdWlyZSYmcmVxdWlyZTtpZighZiYmYylyZXR1cm4gYyhpLCEwKTtpZih1KXJldHVybiB1KGksITApO3ZhciBhPW5ldyBFcnJvcihcIkNhbm5vdCBmaW5kIG1vZHVsZSAnXCIraStcIidcIik7dGhyb3cgYS5jb2RlPVwiTU9EVUxFX05PVF9GT1VORFwiLGF9dmFyIHA9bltpXT17ZXhwb3J0czp7fX07ZVtpXVswXS5jYWxsKHAuZXhwb3J0cyxmdW5jdGlvbihyKXt2YXIgbj1lW2ldWzFdW3JdO3JldHVybiBvKG58fHIpfSxwLHAuZXhwb3J0cyxyLGUsbix0KX1yZXR1cm4gbltpXS5leHBvcnRzfWZvcih2YXIgdT1cImZ1bmN0aW9uXCI9PXR5cGVvZiByZXF1aXJlJiZyZXF1aXJlLGk9MDtpPHQubGVuZ3RoO2krKylvKHRbaV0pO3JldHVybiBvfXJldHVybiByfSkoKSIsImFzeW5jIGZ1bmN0aW9uIHB1bGxDb3VudHJ5KCkge1xuICAgIHRyeSB7XG4gICAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goJ2h0dHBzOi8vZ3Vlc3MtdGhlLWNhcGl0YWwtYXN3ai5vbnJlbmRlci5jb20vY291bnRyaWVzL3JhbmRvbScpO1xuXG4gICAgICAgIGlmICghcmVzcG9uc2Uub2spIHtcbiAgICAgICAgICAgIHRocm93IG5ldyBFcnJvcihgSFRUUCBlcnJvciEgc3RhdHVzOiAke3Jlc3BvbnNlLnN0YXR1c31gKTtcbiAgICAgICAgfVxuXG4gICAgICAgIGNvbnN0IGRhdGEgPSBhd2FpdCByZXNwb25zZS5qc29uKCk7XG5cbiAgICAgICAgbGV0IGZpcnN0X2NvdW50cnkgPSBkYXRhWzBdLmNvdW50cnk7XG4gICAgICAgIGxldCBmaXJzdF9jYXBpdGFsID0gZGF0YVswXS5jYXBpdGFsX2NpdHk7XG5cbiAgICAgICAgbGV0IGNhcGl0YWxzID0gW2ZpcnN0X2NhcGl0YWwsIGRhdGFbMV0uY2FwaXRhbF9jaXR5LCBkYXRhWzJdLmNhcGl0YWxfY2l0eSwgZGF0YVszXS5jYXBpdGFsX2NpdHldO1xuXG4gICAgICAgIGxldCBjb3VudHJ5X2NhcGl0YWxfbWFwID0ge1xuICAgICAgICAgICAgW2ZpcnN0X2NvdW50cnldOiBmaXJzdF9jYXBpdGFsXG4gICAgICAgIH07XG5cbiAgICAgICAgZm9yKGxldCBpID0gY2FwaXRhbHMubGVuZ3RoIC0gMTsgaSA+IDA7IGktLSl7XG4gICAgICAgICAgICBjb25zdCBqID0gTWF0aC5mbG9vcihNYXRoLnJhbmRvbSgpICogaSlcbiAgICAgICAgICAgIGNvbnN0IHRlbXAgPSBjYXBpdGFsc1tpXVxuICAgICAgICAgICAgY2FwaXRhbHNbaV0gPSBjYXBpdGFsc1tqXVxuICAgICAgICAgICAgY2FwaXRhbHNbal0gPSB0ZW1wXG4gICAgICAgIH1cblxuICAgICAgICBjb25zb2xlLmxvZyhcIkZpcnN0IENvdW50cnk6IFwiLCBmaXJzdF9jb3VudHJ5KTtcbiAgICAgICAgY29uc29sZS5sb2coXCJTaHVmZmxlZCBDYXBpdGFsczogXCIsIGNhcGl0YWxzKTtcbiAgICAgICAgY29uc29sZS5sb2coXCJDb3VudHJ5IENhcGl0YWwgTWFwOiBcIiwgY291bnRyeV9jYXBpdGFsX21hcCk7XG5cbiAgICB9IGNhdGNoIChlcnJvcikge1xuICAgICAgICBjb25zb2xlLmVycm9yKCdGYWlsZWQgdG8gZmV0Y2ggdGhlIGRhdGEnLCBlcnJvcik7XG4gICAgfVxufVxuXG5wdWxsQ291bnRyeSgpO1xuXG4gbW9kdWxlLmV4cG9ydHMgPSB7XG4gICAgcHVsbENvdW50cnlcbn1cbiIsImNvbnN0IHsgcHVsbENvdW50cnkgfSA9IHJlcXVpcmUoJy4vYXBwLmpzJylcblxuLy8gRXZlbnQgbGlzdGVuZXIgb24gYnV0dG9ucyBmb3IgYWN0aW9ucyBoZXJlXG5cbi8vIFJlbWVtYmVyIHRvIGNvbnZlcnQgdG8gYnVuZGxlIHdoZW4gZmluaXNoZWRcbiJdfQ==
