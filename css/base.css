@@ -1,0 +1,6 @@
+/* default element styling */
+
+button{
+    min-height: 10vh;
+    min-width: 25vh;
+}
