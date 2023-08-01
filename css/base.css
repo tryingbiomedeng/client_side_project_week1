@@ -8,6 +8,7 @@ button{
 #startGameButton{
     min-height: 7vh;
     min-width: 14vh;
+
     color: whitesmoke;
     border-color: black;
     background-color: blueviolet;

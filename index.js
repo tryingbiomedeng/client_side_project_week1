@@ -5,7 +5,6 @@ const startGameButton = document.querySelector('#startGameButton')
 
 startGameButton.addEventListener('click', function() {
     // quiz.style.opacity = 1;
-    startGameButton.remove();
     runGame();
-    
+    this.remove();
 })
