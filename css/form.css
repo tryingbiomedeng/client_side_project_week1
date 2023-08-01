@@ -2,3 +2,7 @@
 /* #options{
     opacity: 0;
 } */
+
+body {
+    background: linear-gradient(180deg, #6f6fe7, whitesmoke, rgb(79, 160, 79));
+}
