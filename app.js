@@ -2,18 +2,26 @@ async function runGame() {
     let score = 0, timer = 60;
     const boxes = document.querySelectorAll('.capital-box');
     let currentCountryCapitalMap;
-    
+
+    const playerNameInput = document.getElementById('playerName');
+    const playerName = playerNameInput.value; 
+    playerNameInput.style.display = 'none'; 
+
     const updateText = (id, text) => document.getElementById(id).innerText = text;
 
     updateText('score', `Score: ${score}`);
     updateText('timer', `Time left: ${timer} seconds`);
     document.getElementById('startGameButton').disabled = true;
 
-    const intervalId = setInterval(() => {
+    const intervalId = setInterval(async () => { 
         if (--timer <= 0) {
             clearInterval(intervalId);
             boxes.forEach(box => box.removeEventListener('click', checkAnswerAndRefresh));
             alert(`Time's up! Your score is ${score}`);
+
+            
+            await postScore(playerName, score);
+
             location.reload();
         } else {
             updateText('timer', `Time left: ${timer} seconds`);
@@ -56,6 +64,23 @@ async function runGame() {
 
     currentCountryCapitalMap = await pullCountry();
     boxes.forEach(box => box.addEventListener('click', checkAnswerAndRefresh));
+}
+
+async function postScore(player, score) {
+    const response = await fetch('https://guess-the-capital-aswj.onrender.com/players', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            player,
+            score: score.toString() 
+        })
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+    }
 }
 
 module.exports = {
