@@ -3,7 +3,14 @@ h1{
     padding-bottom: 20px;
 }
 
-
+#score-board {
+    border: 2px solid #1928f5;
+    border-radius: 10px;
+    padding: 20px;
+    width: 250px; 
+    background-color: #fcede2;
+}
+  
 h1::after {
     content: '';
     display: block;
