@@ -60,6 +60,7 @@ h1::after {
     height: 45px;
     color: aliceblue;
     background-color: #f77c36;
+    border: 2px solid #54597F; 
 }
 
 #leaderboard {
@@ -68,6 +69,7 @@ h1::after {
     width: 300px; 
     color: #54597f;
     background-color: #F6B854;
+    border: 2px solid #54597F; 
 }
 
 #homeButton {
