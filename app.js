@@ -1,88 +1,93 @@
 async function runGame() {
     let score = 0, timer = 60;
-    const boxes = document.querySelectorAll('.capital-box');
-    let currentCountryCapitalMap;
-
+    const boxes = [...document.querySelectorAll('.capital-box')];
+    const updateText = (id, text) => document.getElementById(id).innerText = text;
+    const startGameButton = document.getElementById('startGameButton');
     const playerNameInput = document.getElementById('playerName');
-    const playerName = playerNameInput.value; 
+
+    startGameButton.disabled = true;
     playerNameInput.style.display = 'none'; 
 
-    const updateText = (id, text) => document.getElementById(id).innerText = text;
-
-    updateText('score', `Score: ${score}`);
-    updateText('timer', `Time left: ${timer} seconds`);
-    document.getElementById('startGameButton').disabled = true;
-
     const intervalId = setInterval(async () => { 
-        if (--timer <= 0) {
-            clearInterval(intervalId);
-            boxes.forEach(box => box.removeEventListener('click', checkAnswerAndRefresh));
-            alert(`Time's up! Your score is ${score}`);
-
-            
-            await postScore(playerName, score);
-
-            location.reload();
+        timer--;
+        if (timer < 0) {
+            finishGame();
         } else {
             updateText('timer', `Time left: ${timer} seconds`);
         }
     }, 1000);
 
-    async function pullCountry() {
+    function finishGame() {
+        clearInterval(intervalId);
+        postScore(playerNameInput.value, score);
+        displayLeaderboard();
+        document.getElementById('question').style.display = 'none';
+        document.getElementById('options').style.display = 'none';
+        document.getElementById('leaderboard-div').style.display = 'block';
+    }
+
+    const pullCountry = async () => {
         try {
             const response = await fetch('https://guess-the-capital-aswj.onrender.com/countries/random');
             if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
             const data = await response.json();
-
-            const capitals = data.map(d => d.capital_city);
-            const country_capital_map = { [data[0].country]: data[0].capital_city };
-            for(let i = capitals.length - 1; i > 0; i--){
-                const j = Math.floor(Math.random() * i);
-                [capitals[i], capitals[j]] = [capitals[j], capitals[i]];
-            }
+            const shuffledCapitals = data.map(d => d.capital_city).sort(() => 0.5 - Math.random());
 
             updateText('question', `What is the capital of ${data[0].country}?`);
-            boxes.forEach((box, i) => box.innerText = capitals[i]);
-            return country_capital_map;
+            boxes.forEach((box, i) => box.innerText = shuffledCapitals[i]);
+
+            return { [data[0].country]: data[0].capital_city };
         } catch (error) {
             console.error('Failed to fetch the data', error);
         }
     }
 
-    async function checkAnswerAndRefresh(e) {
-        const correctAnswer = currentCountryCapitalMap[Object.keys(currentCountryCapitalMap)[0]];
+    const checkAnswerAndRefresh = async (e) => {
+        const correctAnswer = Object.values(currentCountryCapitalMap)[0];
         if(e.target.innerText === correctAnswer) {
             alert("Correct Answer");
             updateText('score', `Score: ${++score}`);
         } else {
             alert(`Incorrect Answer, the correct answer was: ${correctAnswer}`);
         }
-        boxes.forEach(box => box.removeEventListener('click', checkAnswerAndRefresh));
         currentCountryCapitalMap = await pullCountry();
-        boxes.forEach(box => box.addEventListener('click', checkAnswerAndRefresh));
     }
 
-    currentCountryCapitalMap = await pullCountry();
+    let currentCountryCapitalMap = await pullCountry();
     boxes.forEach(box => box.addEventListener('click', checkAnswerAndRefresh));
 }
 
-async function postScore(player, score) {
-    const response = await fetch('https://guess-the-capital-aswj.onrender.com/players', {
+const postScore = async (player, score) => {
+    await fetch('https://guess-the-capital-aswj.onrender.com/players', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            player,
-            score: score.toString() 
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ player, score: score.toString() }),
     });
+}
 
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+const getScores = async () => {
+    try {
+        const response = await fetch('https://guess-the-capital-aswj.onrender.com/players');
+        const scores = await response.json();
+        return scores.sort((a, b) => Number(b.score) - Number(a.score));
+    } catch (error) {
+        console.error('Failed to fetch the scores', error);
     }
 }
 
-module.exports = {
-    runGame
+const displayLeaderboard = async () => {
+    const leaderboard = await getScores();
+    const leaderboardDiv = document.getElementById('leaderboard');
+
+    while (leaderboardDiv.firstChild) leaderboardDiv.firstChild.remove();
+
+    leaderboard.forEach(({player, score}) => {
+        const p = document.createElement('p');
+        p.textContent = `${player}: ${score}`;
+        leaderboardDiv.appendChild(p);
+    });
+
+    setTimeout(() => location.reload(), 12000);
 }
+
+module.exports = { runGame }
