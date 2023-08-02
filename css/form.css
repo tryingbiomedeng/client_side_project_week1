@@ -10,8 +10,9 @@ body {
 }    
 
 header{
-    padding: 15px;
+    padding: 5px;
     height: 10px;
+    padding-left: 150px;
 }
 
 #playerName{
@@ -21,6 +22,7 @@ header{
     border-color: #F6759D;
     background-color: whitesmoke;
     border-radius: 10px;
+    padding-left: 10px;
 }
 
 #startGameButton{
