@@ -11,6 +11,7 @@ button{
     min-width: 20vh;
     border-radius: 10px;
     padding: 20px;
+    border: 2px solid #54597F; 
 }
 
 #box2 {
@@ -19,6 +20,7 @@ button{
     min-width: 20vh;
     border-radius: 10px;
     padding: 20px;
+    border: 2px solid #54597F; 
 }
 
 #box3 {
@@ -27,6 +29,7 @@ button{
     min-width: 20vh;
     border-radius: 10px;
     padding: 20px;
+    border: 2px solid #54597F; 
 }
 
 #box4 {
@@ -35,4 +38,5 @@ button{
     min-width: 20vh;
     border-radius: 10px;
     padding: 20px;
+    border: 2px solid #54597F; 
 }

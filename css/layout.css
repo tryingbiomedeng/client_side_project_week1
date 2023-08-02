@@ -15,7 +15,8 @@ h1{
     color: aliceblue;
     background-color: #83BCD9;
     display: flex;
-    justify-content: space-between; 
+    justify-content: space-between;
+    border: 2px solid #54597F; 
 }
 
 #score, #timer {
@@ -43,6 +44,8 @@ h1::after {
     margin: 20px 0;
     object-fit: fit;
     position: relative;
+    border: 2px solid #54597F; 
+    border-radius: 10px;
 }
 
 #homeButton {
@@ -57,6 +60,7 @@ h1::after {
     height: 45px;
     color: aliceblue;
     background-color: #f77c36;
+    border: 2px solid #54597F; 
 }
 
 #leaderboard {
@@ -65,6 +69,7 @@ h1::after {
     width: 300px; 
     color: #54597f;
     background-color: #F6B854;
+    border: 2px solid #54597F; 
 }
 
 #homeButton {
