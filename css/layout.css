@@ -10,6 +10,8 @@ h1{
     border: 2px solid #83BCD9;
     border-radius: 10px;
     padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
     width: 350px; 
     height: 35px;
     color: aliceblue;
