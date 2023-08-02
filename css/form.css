@@ -7,6 +7,11 @@ body {
     background-color: #D9F6F9;
 }    
 
+header{
+    padding: 20px;
+    height: 30px;
+}
+
 #playerName{
     min-height: 6vh;
     min-width: 16vh;
@@ -23,4 +28,38 @@ body {
     border-color: #35CE8D;
     background-color: #35CE8D;
     border-radius: 10px;
+}
+
+
+.help-button {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    background-color: #003f83;
+    color: #fff;
+    font-size: 30px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+}
+
+.popup {
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: 4px;
+    max-width: 200px;
+    display: none;
+}
+
+.popup p {
+    margin: 0;
+}
+
+.help-button:hover + .popup,
+.popup:hover {
+    display: block;
 }
