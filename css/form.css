@@ -1,10 +1,16 @@
 body {
     background-color: #fdf5f5;
     font-family: 'Neucha', cursive;
+    background-image: url('./background.png');
+    background-size: cover; 
+    background-attachment: fixed;
+    height: 150vh;
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
 }    
 
 header{
-    padding: 20px;
+    padding: 15px;
     height: 10px;
 }
 
@@ -33,8 +39,8 @@ header{
     background-color: #788F75;
     color: #fff;
     font-size: 30px;
+    border: 2px solid #54597F; 
     border-radius: 50%;
-    border: none;
     cursor: pointer;
     width: 50px;
     height: 50px;
