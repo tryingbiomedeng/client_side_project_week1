@@ -1,22 +1,18 @@
-/* form and input styling */
-/* #options{
-    opacity: 0;
-} */
-
 body {
-    background-color: #D9F6F9;
+    background-color: #fdf5f5;
+    font-family: 'Neucha', cursive;
 }    
 
 header{
     padding: 20px;
-    height: 30px;
+    height: 10px;
 }
 
 #playerName{
     min-height: 6vh;
     min-width: 16vh;
     color: black;
-    border-color: #35CE8D;
+    border-color: #F6759D;
     background-color: whitesmoke;
     border-radius: 10px;
 }
@@ -25,17 +21,16 @@ header{
     min-height: 6vh;
     min-width: 14vh;
     color: black;
-    border-color: #35CE8D;
-    background-color: #35CE8D;
+    border-color: #F6759D;
+    background-color: #F6759D;
     border-radius: 10px;
 }
-
 
 .help-button {
     display: flex;
     justify-content: center; 
     align-items: center;
-    background-color: #003f83;
+    background-color: #788F75;
     color: #fff;
     font-size: 30px;
     border-radius: 50%;

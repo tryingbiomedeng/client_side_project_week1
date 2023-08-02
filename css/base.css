@@ -4,3 +4,35 @@ button{
     min-height: 10vh;
     min-width: 20vh;
 }
+
+#box1 {
+    background-color: #83BCD9;
+    min-height: 10vh;
+    min-width: 20vh;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#box2 {
+    background-color: #F6759D;
+    min-height: 10vh;
+    min-width: 20vh;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#box3 {
+    background-color: #F6B854;
+    min-height: 10vh;
+    min-width: 20vh;
+    border-radius: 10px;
+    padding: 25px;
+}
+
+#box4 {
+    background-color: #788f75;
+    min-height: 10vh;
+    min-width: 20vh;
+    border-radius: 10px;
+    padding: 25px;
+}
