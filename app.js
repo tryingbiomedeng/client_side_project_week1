@@ -11,7 +11,7 @@ async function runGame() {
     const intervalId = setInterval(async () => { 
         timer--;
         if (timer < 0) {
-            finishGame();
+            await finishGame();
         } else {
             updateText('timer', `Time left: ${timer} seconds`);
         }
@@ -87,7 +87,9 @@ const displayLeaderboard = async () => {
         leaderboardDiv.appendChild(p);
     });
 
-    setTimeout(() => location.reload(), 12000);
+    const homeButton = document.getElementById('homeButton');
+    homeButton.style.display = 'block';
+    homeButton.onclick = () => location.reload();
 }
 
 module.exports = { runGame }
