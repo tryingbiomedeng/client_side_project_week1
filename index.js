@@ -1,10 +1,13 @@
 const { runGame } = require('./app.js')
 
 const startGameButton = document.querySelector('#startGameButton')
-// const quiz = document.getElementById('quiz');
+const playerNameInput = document.getElementById('playerName');
 
 startGameButton.addEventListener('click', function() {
-    // quiz.style.opacity = 1;
-    runGame();
-    this.remove();
+    if (playerNameInput.value.trim() === "") {
+        alert("Please input a name");
+    } else {
+        runGame();
+        this.remove();
+    }
 })

@@ -45,7 +45,6 @@ async function runGame() {
     const checkAnswerAndRefresh = async (e) => {
         const correctAnswer = Object.values(currentCountryCapitalMap)[0];
         if(e.target.innerText === correctAnswer) {
-            alert("Correct Answer");
             updateText('score', `Score: ${++score}`);
         } else {
             alert(`Incorrect Answer, the correct answer was: ${correctAnswer}`);
@@ -93,3 +92,17 @@ const displayLeaderboard = async () => {
 }
 
 module.exports = { runGame }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
