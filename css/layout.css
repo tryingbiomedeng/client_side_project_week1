@@ -35,3 +35,6 @@ h1::after {
     margin: 30px 0;
 }
 
+#homeButton {
+    align-items: center;
+}
