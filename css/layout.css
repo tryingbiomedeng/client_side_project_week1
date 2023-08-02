@@ -1,40 +1,79 @@
 /* positioning and arranging content blocks */
 h1{
-    padding-bottom: 5px;
+    padding-bottom: 20px;
+    color: #54597F;
+    font-family: 'Neucha', cursive;
+    font-size: 50px;
 }
 
 #score-board {
-    border: 2px solid #1928f5;
-    border-radius: 5px;
+    border: 2px solid #83BCD9;
+    border-radius: 10px;
     padding: 5px;
-    width: 250px; 
-    background-color: #fcede2;
+    width: 350px; 
+    height: 35px;
+    color: aliceblue;
+    background-color: #83BCD9;
+    display: flex;
+    justify-content: space-between; 
 }
-  
+
+#score, #timer {
+    font-size: 18px;
+}
+
 h1::after {
     content: '';
     display: block;
-    border-bottom: 2px solid #050505;
+    border-bottom: 3px solid #54597F;
     width: 100%;
-    margin: 0 auto;
-    padding-top: 10px;
 }
 
 #options{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
     justify-content: space-evenly;
     align-items: center;
+    padding-bottom: 40px;
 }
 
 .map-image {
-    width: 400px;
-    height: 200px; 
-    object-fit: cover;
-    margin: 25px 0;
+    width: 600px;
+    height: 300px; 
+    margin: 30px 0;
+    object-fit: fit;
+    position: relative;
 }
 
 #homeButton {
     align-items: center;
+}
+
+#leaderboard-div {
+    border: 2px solid #f77c36;
+    border-radius: 10px;
+    padding: 5px;
+    width: 350px; 
+    height: 45px;
+    color: aliceblue;
+    background-color: #f77c36;
+}
+
+#leaderboard {
+    border: 2px solid #F6B854;
+    border-radius: 10px;
+    width: 300px; 
+    color: #54597f;
+    background-color: #F6B854;
+}
+
+#homeButton {
+    border: 2px solid #54597F;
+    border-radius: 10px;
+    padding: 5px;
+    width: 40px; 
+    height: 30px;
+    color: aliceblue;
+    background-color: #54597F;
+    font-size: 20px;
 }

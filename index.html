@@ -8,8 +8,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="shortcut icon" href="./favicon-16x16.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Neucha&display=swap" rel="stylesheet">
 </head>
 <body>
+    <header>
+        <div class="help-button">?</div>
+        <div class="popup">
+            <p> How to play? 
+                Simply just type in your name and click the start button!
+                Guess as many capitals as you can before time runs out.
+            </p>
+        </div>
+    </header>
     <div class="container text-center">
         <h1>Welcome to Guess the Capital!</h1>
         <div id="player-info">
@@ -18,29 +28,29 @@
         </div>
         <h2 id="question"></h2>
         <div id="score-board" class="container text-center">
-            <h3 id="score">Score: 0</h3>
-            <h3 id="timer">Time left: 60 seconds</h3>
+                <h3 id="score">Score: 0</h3>
+                <h3 id="timer">Time left: 60 seconds</h3>
         </div>
-        <img src="colourmap.gif" alt="World map" class="map-image">
+        <img src="./css/map.jpg" alt="World map" class="map-image">
     </div>
     <div class="container text-center">
     <div id="options">
-        <button type="button" class="btn btn-success">
+        <button type="button" class="btn btn-light">
             <div id="box1" class="capital-box">
                 There are 195 capitals in the world!
             </div>
         </button>
-        <button type="button" class="btn btn-danger">
+        <button type="button" class="btn btn-light">
             <div id="box2" class="capital-box">
                 Ninety percent of Earth's population lives in the Northern Hemisphere!
             </div>
         </button>
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-light">
             <div id="box3" class="capital-box">
                 Shanghai is the largest capital city in the world!
             </div>
         </button>
-        <button type="button" class="btn btn-warning">
+        <button type="button" class="btn btn-light">
             <div id="box4" class="capital-box">
                 Damascus is the oldest capital city in the world!
             </div>
@@ -52,15 +62,8 @@
     </div>
     <div id="leaderboard-div" class="container text-center" style="display: none;">
         <h2>Leaderboard</h2>
-        <div id="leaderboard"></div>
+        <div id="leaderboard" class="container text-center"></div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
