@@ -1,6 +1,10 @@
 body {
     background-color: #fdf5f5;
     font-family: 'Neucha', cursive;
+    background-image: url('./background.png');
+    background-size: cover; 
+    background-attachment: fixed;
+    height: 150vh;
 }    
 
 header{
