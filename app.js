@@ -17,10 +17,10 @@ async function runGame() {
         }
     }, 1000);
 
-    function finishGame() {
+    async function finishGame() {
         clearInterval(intervalId);
-        postScore(playerNameInput.value, score);
-        displayLeaderboard();
+        await postScore(playerNameInput.value, score);
+        await displayLeaderboard();
         document.getElementById('question').style.display = 'none';
         document.getElementById('options').style.display = 'none';
         document.getElementById('leaderboard-div').style.display = 'block';
