@@ -8,7 +8,7 @@
 3 - To start the application `npm run dev`
 
 ## Usage
-1 - Press the start button to begin once the page loads.
+1 - Enter your name and press the start button to begin once the page loads.
 
 2 - Read the question and select the correct capital city of the associated country.
 
