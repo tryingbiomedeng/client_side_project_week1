@@ -1,12 +1,12 @@
 /* positioning and arranging content blocks */
 h1{
-    padding-bottom: 20px;
+    padding-bottom: 5px;
 }
 
 #score-board {
     border: 2px solid #1928f5;
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 5px;
+    padding: 5px;
     width: 250px; 
     background-color: #fcede2;
 }
@@ -23,16 +23,16 @@ h1::after {
 #options{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    gap: 15px;
     justify-content: space-evenly;
     align-items: center;
 }
 
 .map-image {
-    width: 500px;
-    height: 325px; 
+    width: 400px;
+    height: 200px; 
     object-fit: cover;
-    margin: 30px 0;
+    margin: 25px 0;
 }
 
 #homeButton {
